@@ -3,6 +3,9 @@ package strings;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import brut.androlib.res.AndrolibResources;
 import brut.androlib.res.data.ResPackage;
@@ -19,7 +22,7 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonGenerator.Feature;
 
 public class StringsXML {
-  final static boolean           debug         = true;
+  final static boolean           debug         = false;
   final static AndrolibResources res           = new AndrolibResources();
   final static ExtMXSerializer   xmlSerializer = AbstractAndrolibResources
                                                    .getResXmlSerializer();
@@ -34,11 +37,12 @@ public class StringsXML {
   public static void toJSON(final ResValuesFile input,
       final File outputDirectory) throws Exception {
     String[] paths = input.getPath().split(File.separator);
-    final String outName = paths[paths.length - 1].replaceFirst("\\.xml$", ".json");
+    final String outName = paths[paths.length - 1].replaceFirst("\\.xml$",
+        ".json");
     final File outFile = new File(outputDirectory, outName);
     p("Saving to: " + outFile);
-    JsonGenerator generator = json.createGenerator(new FileOutputStream(
-        outFile), JsonEncoding.UTF8);
+    JsonGenerator generator = json.createGenerator(
+        new FileOutputStream(outFile), JsonEncoding.UTF8);
 
     // Ensure output stream is auto closed when generator.close() is called.
     generator.configure(Feature.AUTO_CLOSE_TARGET, true);
@@ -47,7 +51,8 @@ public class StringsXML {
     generator.configure(Feature.QUOTE_NON_NUMERIC_NUMBERS, true);
     generator.configure(Feature.WRITE_NUMBERS_AS_STRINGS, true);
     generator.configure(Feature.QUOTE_FIELD_NAMES, true);
-    // generator.configure(Feature.ESCAPE_NON_ASCII, true); // don't escape non ascii
+    // generator.configure(Feature.ESCAPE_NON_ASCII, true); // don't escape non
+    // ascii
     generator.useDefaultPrettyPrinter();
 
     // ResStringValue extends ResScalarValue which has field mRawValue
@@ -93,24 +98,46 @@ public class StringsXML {
     p("complete");
   }
 
+  public static void e(final String msg) throws Exception {
+    throw new Exception(msg);
+  }
+
+  public static void silenceLogger() throws Exception {
+    Field logger = AndrolibResources.class.getDeclaredField("LOGGER");
+    logger.setAccessible(true);
+
+    // remove final
+    Field mods = logger.getClass().getDeclaredField("modifiers");
+    mods.setAccessible(true);
+    mods.setInt(logger, logger.getModifiers() & ~Modifier.FINAL);
+
+    Logger newLogger = Logger.getAnonymousLogger();
+    newLogger.setLevel(Level.OFF);
+    // set logger to anon
+    logger.set(res, newLogger);
+  }
+
   public static void main(String[] args) throws Exception {
     if (args.length != 2) {
-      System.err.println("Usage: input.apk outputFolder");
+      e("Usage: input.apk outputFolder");
     }
 
     final File input = new File(args[0]);
 
     if (!input.exists() || !input.isFile() || !input.canRead()) {
-      throw new Exception("Input is not an existing readable file.");
+      e("Input is not an existing readable file.");
     }
 
     final File outputDirectory = new File(args[1]);
     // Attempt to make directory if it doesn't already exist.
     outputDirectory.mkdirs();
 
-    if (!outputDirectory.exists() || !outputDirectory.isDirectory() || !outputDirectory.canRead()) {
-      throw new Exception("Output is not an existing readable directory.");
+    if (!outputDirectory.exists() || !outputDirectory.isDirectory()
+        || !outputDirectory.canRead()) {
+      e("Output is not an existing readable directory.");
     }
+
+    silenceLogger();
 
     run(input, outputDirectory);
   }

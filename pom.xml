@@ -15,16 +15,10 @@
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 	<build>
-		<resources>
-			<resource>
-				<directory>${basedir}</directory>
-				<filtering>false</filtering>
-				<includes>
-					<include>LICENSE.txt</include>
-				</includes>
-			</resource>
-		</resources>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
 			<plugin>
@@ -43,9 +37,11 @@
 							<mainClass>strings.StringsXML</mainClass>
 						</manifest>
 					</archive>
-					<descriptorRefs>
-						<descriptorRef>jar-with-dependencies</descriptorRef>
-					</descriptorRefs>
+					<descriptors>
+						<!-- Built in jar-with-dependencies ignores system scope so use custom 
+							descriptor. -->
+						<descriptor>jar_with_all.xml</descriptor>
+					</descriptors>
 				</configuration>
 			</plugin>
 		</plugins>
