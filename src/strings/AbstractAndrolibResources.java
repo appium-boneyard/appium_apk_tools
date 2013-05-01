@@ -30,6 +30,7 @@ import brut.directory.DirectoryException;
 
 // Code from /Apktool/brut.apktool/apktool-lib/src/main/java/brut/androlib/res/AndrolibResources.java
 abstract class AbstractAndrolibResources {
+  /** Converts values file to XML **/
   public static void generateValuesFile(ResValuesFile valuesFile, Directory out,
       ExtXmlSerializer serial) throws AndrolibException {
     try {
