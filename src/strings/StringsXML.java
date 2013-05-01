@@ -34,7 +34,7 @@ public class StringsXML {
   public static void toJSON(final ResValuesFile input,
       final File outputDirectory) throws Exception {
     String[] paths = input.getPath().split(File.separator);
-    final String outName = paths[paths.length - 1];
+    final String outName = paths[paths.length - 1].replaceFirst("\\.xml$", ".json");
     final File outFile = new File(outputDirectory, outName);
     p("Saving to: " + outFile);
     JsonGenerator generator = json.createGenerator(new FileOutputStream(
