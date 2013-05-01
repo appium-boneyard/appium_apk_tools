@@ -2,7 +2,9 @@
 
 Extracts `strings.xml` from an APK and converts to JSON.
 
-`java -jar strings_from_apk.jar input.apk outputFolder` creates `strings.json` in `outputFolder`
+- `java -jar strings_from_apk.jar input.apk outputFolder` creates `strings.json` in `outputFolder`
+- `java -jar /tmp/apk/apk2.apk /tmp/apk it` will convert res/values-it/strings.xml 
+- `java -jar /tmp/apk/apk2.apk /tmp/apk` will convert res/values/strings.xml
 
 #### Ruby gem
 

@@ -75,8 +75,11 @@ public class StringsXML {
     generator.close();
   }
 
-  public static void run(final File input, final File outputDirectory)
-      throws Exception {
+  public static void run(final File input, final File outputDirectory,
+      String localization) throws Exception {
+    if (localization == null) {
+      localization = "values";
+    }
     final ExtFile apkFile = new ExtFile(input);
     ResTable table = res.getResTable(apkFile, true);
     ResValuesFile stringsXML = null;
@@ -84,7 +87,7 @@ public class StringsXML {
       p(pkg);
       for (ResValuesFile values : pkg.listValuesFiles()) {
         p(values.getPath());
-        if (values.getPath().endsWith("/strings.xml")) {
+        if (values.getPath().endsWith(localization + "/strings.xml")) {
           stringsXML = values;
           break;
         }
@@ -118,8 +121,8 @@ public class StringsXML {
   }
 
   public static void main(String[] args) throws Exception {
-    if (args.length != 2) {
-      e("Usage: input.apk outputFolder");
+    if (args.length < 2 || args.length > 3) {
+      e("Usage: input.apk outputFolder [localization]");
     }
 
     final File input = new File(args[0]);
@@ -139,6 +142,12 @@ public class StringsXML {
 
     silenceLogger();
 
-    run(input, outputDirectory);
+    String localization = null;
+
+    if (args.length == 3) {
+      localization = "values-" + args[2];
+    }
+
+    run(input, outputDirectory, localization);
   }
 }
