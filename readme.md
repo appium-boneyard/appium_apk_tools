@@ -1,6 +1,8 @@
-Extract `strings.xml` from an APK and convert to JSON.
+#### strings_from_apk
 
-`java -jar strings_from_apk.jar input.apk outputFolder
+Extracts `strings.xml` from an APK and converts to JSON.
+
+`java -jar strings_from_apk.jar input.apk outputFolder` creates `strings.json` in `outputFolder`
 
 #### Third party jars
 
