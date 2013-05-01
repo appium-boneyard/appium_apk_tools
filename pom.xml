@@ -5,6 +5,8 @@
 	<artifactId>strings_from_apk</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>strings_from_apk</name>
+	<!-- mvn clean compile assembly:single -->
+	<packaging>jar</packaging>
 	<description>Extract strings.xml from an APK and convert to JSON</description>
 	<licenses>
 		<license>
@@ -14,6 +16,15 @@
 		</license>
 	</licenses>
 	<build>
+		<resources>
+			<resource>
+				<directory>${basedir}</directory>
+				<filtering>false</filtering>
+				<includes>
+					<include>LICENSE.txt</include>
+				</includes>
+			</resource>
+		</resources>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
 			<plugin>
@@ -22,6 +33,19 @@
 				<configuration>
 					<source>1.6</source>
 					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>strings.StringsXML</mainClass>
+						</manifest>
+					</archive>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
 				</configuration>
 			</plugin>
 		</plugins>

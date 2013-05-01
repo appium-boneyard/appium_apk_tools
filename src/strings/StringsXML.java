@@ -94,8 +94,24 @@ public class StringsXML {
   }
 
   public static void main(String[] args) throws Exception {
-    final File input = new File("/tmp/apk/apk.apk");
-    final File outputDirectory = new File("/tmp/apk/");
+    if (args.length != 2) {
+      System.err.println("Usage: input.apk outputFolder");
+    }
+
+    final File input = new File(args[0]);
+
+    if (!input.exists() || !input.isFile() || !input.canRead()) {
+      throw new Exception("Input is not an existing readable file.");
+    }
+
+    final File outputDirectory = new File(args[1]);
+    // Attempt to make directory if it doesn't already exist.
+    outputDirectory.mkdirs();
+
+    if (!outputDirectory.exists() || !outputDirectory.isDirectory() || !outputDirectory.canRead()) {
+      throw new Exception("Output is not an existing readable directory.");
+    }
+
     run(input, outputDirectory);
   }
 }

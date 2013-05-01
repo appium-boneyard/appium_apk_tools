@@ -63,7 +63,7 @@ abstract class AbstractAndrolibResources {
           + valuesFile.getPath(), ex);
     }
   }
-  
+
   public static ExtMXSerializer getResXmlSerializer() {
     ExtMXSerializer serial = new ExtMXSerializer();
     serial.setProperty(ExtXmlSerializer.PROPERTY_SERIALIZER_INDENTATION,
