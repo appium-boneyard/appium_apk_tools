@@ -10,10 +10,6 @@ Prints Launch actvity by parsing AndroidManifest.xml from apk
 
 - `java -jar appium_apk_tools.jar printLaunchActivity input.apk outputFolder` prints launch activity after parsing AndroidManifest.xml from apk.
 
-#### Ruby gem
-
-- [strings_from_apk_gem](https://github.com/bootstraponline/strings_from_apk_gem)
-
 #### Third party jars
 
 - [apktool-cli-1.5.3-SNAPSHOT.jar](https://github.com/iBotPeaches/Apktool)
