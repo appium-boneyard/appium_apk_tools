@@ -1,10 +1,14 @@
-#### strings_from_apk
+#### appium_apk_tools
 
 Extracts `strings.xml` from an APK and converts to JSON.
 
-- `java -jar strings_from_apk.jar input.apk outputFolder` creates `strings.json` in `outputFolder`
-- `java -jar strings_from_apk.jar /tmp/apk/apk2.apk /tmp/apk it` will convert `res/values-it/strings.xml` (Italian strings)
-- `java -jar strings_from_apk.jar /tmp/apk/apk2.apk /tmp/apk` will convert `res/values/strings.xml` (default strings)
+- `java -jar appium_apk_tools.jar stringsFromApk input.apk outputFolder` creates `strings.json` in `outputFolder`
+- `java -jar appium_apk_tools.jar stringsFromApk /tmp/apk/apk2.apk /tmp/apk it` will convert `res/values-it/strings.xml` (Italian strings)
+- `java -jar appium_apk_tools.jar stringsFromApk /tmp/apk` will convert `res/values/strings.xml` (default strings)
+
+Prints Launch actvity by parsing AndroidManifest.xml from apk
+
+- `java -jar appium_apk_tools.jar printLaunchActivity input.apk outputFolder` prints launch activity after parsing AndroidManifest.xml from apk.
 
 #### Ruby gem
 

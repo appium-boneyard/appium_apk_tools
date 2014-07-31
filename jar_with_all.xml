@@ -20,7 +20,7 @@
 			<excludes>
 				<exclude>
 		            <!-- Don't include the jar we're building -->
-		            *strings_from_apk:jar:*
+		            *appium_apk_tools:jar:*
 		        </exclude>
 			</excludes>
 			<outputDirectory>/</outputDirectory>
