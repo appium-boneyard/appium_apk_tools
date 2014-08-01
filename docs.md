@@ -43,7 +43,6 @@ apk tool generates xml which is easy to parse. This is the approach we're using 
 ```
 AndroidManifest.xml from apk tool
 
-
         <activity-alias android:name="com.ubercab.UBUberActivity" android:targetActivity="com.ubercab.client.feature.launch.LauncherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
