@@ -1,4 +1,6 @@
-Reference docs that explain why we're manually parsing the manifest to find the launch activity.
+# printLaunchActivity
+
+Reference docs that explain why we're using apk tool to parse the manifest to find the launch activity.
 
 Some apks don't have a launchable that shows up with `dump badging`
 
