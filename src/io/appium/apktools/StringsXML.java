@@ -86,9 +86,11 @@ public class StringsXML {
     for (ResPackage pkg : table.listMainPackages()) {
       p(pkg);
       for (ResValuesFile values : pkg.listValuesFiles()) {
+        // strings.xml is not case sensitive. xamarin will call it Strings.xml
         final String path = values.getPath().toLowerCase();
+        final String targetPath = (localization + "/strings.xml").toLowerCase();
         p(path);
-        if (path.endsWith(localization + "/strings.xml")) {
+        if (path.endsWith(targetPath)) {
           stringsXML = values;
           break;
         }
