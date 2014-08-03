@@ -86,8 +86,9 @@ public class StringsXML {
     for (ResPackage pkg : table.listMainPackages()) {
       p(pkg);
       for (ResValuesFile values : pkg.listValuesFiles()) {
-        p(values.getPath());
-        if (values.getPath().endsWith(localization + "/strings.xml")) {
+        final String path = values.getPath().toLowerCase();
+        p(path);
+        if (path.endsWith(localization + "/strings.xml")) {
           stringsXML = values;
           break;
         }
