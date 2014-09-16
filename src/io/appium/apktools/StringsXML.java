@@ -100,6 +100,10 @@ public class StringsXML {
       }
     }
 
+    if (stringsXML == null) {
+      e("Could not find the strings.xml file for localization: " + localization);
+    }
+
     toJSON(stringsXML, outputDirectory);
     p("complete");
   }
