@@ -56,12 +56,12 @@
         <dependency>
             <groupId>apktool.snapshot</groupId>
             <artifactId>apktool</artifactId>
-            <version>1.5.3</version>
+            <version>2.0.0-RC2</version>
             <scope>system</scope>
             <!--
             systemPath is used because apktool is not in any maven repo.
             setting up a local maven repo for one dependency doesn't make sense. -->
-            <systemPath>${project.basedir}/lib/apktool-cli-1.5.3-SNAPSHOT.jar</systemPath>
+            <systemPath>${project.basedir}/lib/apktool-cli-2.0.0-rc2-SNAPSHOT.jar</systemPath>
         </dependency>
     </dependencies>
 </project>
