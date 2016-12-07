@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>appium_apk_tools</groupId>
     <artifactId>appium_apk_tools</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
     <name>appium_apk_tools</name>
     <!-- mvn clean compile assembly:single -->
     <packaging>jar</packaging>
@@ -25,8 +25,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.0</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.7</source>
+                    <target>1.7</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -56,12 +56,12 @@
         <dependency>
             <groupId>apktool.snapshot</groupId>
             <artifactId>apktool</artifactId>
-            <version>1.5.3</version>
+            <version>2.2.2</version>
             <scope>system</scope>
             <!--
             systemPath is used because apktool is not in any maven repo.
             setting up a local maven repo for one dependency doesn't make sense. -->
-            <systemPath>${project.basedir}/lib/apktool-cli-1.5.3-SNAPSHOT.jar</systemPath>
+            <systemPath>${project.basedir}/lib/apktool-cli-2.2.2-SNAPSHOT.jar</systemPath>
         </dependency>
     </dependencies>
 </project>
